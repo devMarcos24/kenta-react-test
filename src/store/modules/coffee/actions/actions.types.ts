@@ -1,0 +1,11 @@
+export const GET_ALL = "@COFFEE/GET_ALL";
+
+export const REMOVE_ONE = "@COFFEE/REMOVE_ONE";
+
+export const ADD_OTHER = "@COFFEE/ADD_OTHER";
+
+export const CHANGE_ONE = "@COFFEE/CHANGE_ONE";
+
+export const ADD_OBJECT_TO_CHANGE = "@COFFEE/ADD_OBJECT_TO_CHANGE";
+
+export const CLEAN_TO_CHANGE_ITEM = "@COFFEE/CLEAN_TO_CHANGE_ITEM";
