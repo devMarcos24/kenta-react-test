@@ -1,9 +1,17 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { PageTitle, PageTitleButton, PageTitleContainer, BackButtonImg, TitleContainer, ButtonsContainer } from "./styles";
-import backButton from '../../assets/backbutton.png'
-import { cleanToChangeItem } from '../../store/modules/coffee/actions';
+import {
+  PageTitle,
+  PageTitleButton,
+  PageTitleButtonExclude,
+  PageTitleContainer,
+  BackButtonImg,
+  TitleContainer,
+  ButtonsContainer,
+} from "./styles";
+import backButton from "../../assets/backbutton.png";
+import { cleanToChangeItem } from "../../store/modules/coffee/actions";
 
 type IHeaderProps = {
   title: string;
@@ -11,11 +19,17 @@ type IHeaderProps = {
   buttonFunction?: () => any;
   excludeButtonFunction?: () => any;
   navigateTo: "new-coffee" | "/";
-}
+};
 
-export const HeaderComponent: React.FC<IHeaderProps> = ({ title, buttonTitle, buttonFunction, excludeButtonFunction, navigateTo }) => {
-  const coffees = useSelector((state: any) => state.coffees)
-  const dispatch = useDispatch()
+export const HeaderComponent: React.FC<IHeaderProps> = ({
+  title,
+  buttonTitle,
+  buttonFunction,
+  excludeButtonFunction,
+  navigateTo,
+}) => {
+  const coffees = useSelector((state: any) => state.coffees);
+  const dispatch = useDispatch();
 
   return (
     <PageTitleContainer>
@@ -23,22 +37,20 @@ export const HeaderComponent: React.FC<IHeaderProps> = ({ title, buttonTitle, bu
         {title.toLocaleLowerCase() !== "cafés" && (
           <Link onClick={() => dispatch(cleanToChangeItem())} to={navigateTo}>
             <BackButtonImg src={backButton} />
-          </Link>)}
+          </Link>
+        )}
         <PageTitle>{title}</PageTitle>
       </TitleContainer>
       <ButtonsContainer>
-        {title.toLocaleLowerCase() !== "cafés" && coffees.toChangeOrExclude &&
-          (<Link onClick={excludeButtonFunction} to={navigateTo}>
-            <PageTitleButton>
-              Excluir
-            </PageTitleButton>
-          </Link>)}
+        {title.toLocaleLowerCase() !== "cafés" && coffees.toChangeOrExclude && (
+          <Link onClick={excludeButtonFunction} to={navigateTo}>
+            <PageTitleButtonExclude>Excluir</PageTitleButtonExclude>
+          </Link>
+        )}
         <Link onClick={buttonFunction} to={navigateTo}>
-          <PageTitleButton>
-            {buttonTitle}
-          </PageTitleButton>
+          <PageTitleButton>{buttonTitle}</PageTitleButton>
         </Link>
       </ButtonsContainer>
-    </PageTitleContainer >
-  )
-}
+    </PageTitleContainer>
+  );
+};
